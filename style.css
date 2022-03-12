@@ -33,6 +33,35 @@ body {
   border: solid black 3px;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ============================ERASER SECTION======================== */
+
+#color-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 50px;
+  width: 50px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+#color-select::-webkit-color-swatch {
+  border: black solid 3px;
+  box-shadow: black 3px 3px;
+}
+
+#color-select::-moz-color-swatch {
+  border: none;
+}
 /* ============================ERASER SECTION======================== */
 
 #eraser-button {

@@ -17,14 +17,23 @@ for (let a = 0; a < size * size; a++) {
 }
 
 function paintPixelOnClick() {
-    this.style.background = 'black';
+    this.style.background = color;
 }
 
 function paintPixel(e) {
     if (e.type == 'mouseover' && mouseDown) {
-        this.style.background = 'black';
+        this.style.background = color;
     }
 }
+
+//=============================================================================
+//==============================COLOR SELECT SECTION===========================
+//=============================================================================
+
+let color = '#2e2e2e'
+let colorSelect = document.getElementById('color-select')
+
+colorSelect.onchange = () => color = colorSelect.value;
 
 //=============================================================================
 //==============================ERASER SECTION=================================
