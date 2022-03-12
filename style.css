@@ -21,7 +21,6 @@ body {
 
 .pixel {
   background-color: #e6e6e6; /*this is the default color of the grid */
-  border: #dddddd solid 1px;
 }
 
 #grid {
