@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap");
+
+* {
+  font-family: "Shippori Antique B1", sans-serif;
+}
+
 body {
   display: flex;
   align-items: center;
@@ -5,8 +11,17 @@ body {
   height: 100vh;
 }
 
+.container {
+  display: flex;
+}
+
+#grid {
+  margin-left: 15px;
+}
+
 .pixel {
-  border: #dbdbdb solid 1px;
+  background-color: #e6e6e6; /*this is the default color of the grid */
+  border: #dddddd solid 1px;
 }
 
 #grid {
@@ -16,4 +31,26 @@ body {
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, 1fr);
   border: solid black 3px;
+}
+
+/* ============================ERASER SECTION======================== */
+
+#eraser-button {
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  border: solid black 3px;
+  box-shadow: black 3px 3px;
+  padding: 5px 15px;
+  transition: ease-out 0.3s;
+}
+
+#eraser-button:hover {
+  cursor: pointer;
+}
+
+.selected {
+  background-color: black;
+  color: white;
+  box-shadow: none !important;
 }
