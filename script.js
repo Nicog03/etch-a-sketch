@@ -10,6 +10,7 @@ window.onmouseup = () => mouseDown = false;
 for (let a = 0; a < size * size; a++) {
     let pixel = document.createElement('div');
     pixel.classList.add('pixel');
+    pixel.style.background = '#e6e6e6'
     pixel.setAttribute('draggable', false);
     pixel.addEventListener('mousedown', paintPixelOnClick);
     pixel.addEventListener('mouseover', paintPixel);
@@ -140,6 +141,8 @@ function rainbowOnClick() {
 let colorPickerButton = document.getElementById('color-picker-button');
 let colorPickerIsActive = false;
 
+let hexValue;
+
 colorPickerButton.addEventListener('click', activateColorPicker)
 
 function activateColorPicker() {
@@ -190,6 +193,9 @@ function colorPicker() {
 
     pixels.forEach(pixel => pixel.removeEventListener('mousedown', colorPicker))
 
+    rgbToHex(this.style.background);
+    colorSelect.value = hexValue;
+
     if (rainbowButtonIsActive) {
         rainbowButtonIsActive = false;
         rainbowButton.classList.remove('selected');
@@ -198,6 +204,26 @@ function colorPicker() {
         pixels.forEach(pixel => pixel.removeEventListener('mouseover', rainbow));
         pixels.forEach(pixel => pixel.removeEventListener('mousedown', rainbowOnClick));
     }
+}
+
+function rgbToHex(rgbValue) {
+    let rgb = rgbValue.split(',');
+
+    let r = parseInt(rgb[0].slice('4')).toString(16);
+    let g = parseInt(rgb[1]).toString(16);
+    let b = parseInt(rgb[2]).toString(16);
+
+    if (r.length == 1) {
+        r = `0${r}`
+    }
+    if (g.length == 1) {
+        g = `0${g}`
+    }
+    if (b.length == 1) {
+        b = `0${b}`
+    }
+
+    hexValue = `#${r}${g}${b}`;
 }
 
 //=============================================================================
