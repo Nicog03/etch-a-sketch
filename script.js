@@ -47,6 +47,8 @@ eraserButton.addEventListener('click', activateEraser)
 
 function activateEraser() {
     if (!eraserButtonIsActive) {
+        rainbowButtonIsActive = false;
+
         eraserButtonIsActive = true;
         eraserButton.classList.add('selected');
 
@@ -73,7 +75,7 @@ function erase(e) {
 }
 
 //=============================================================================
-//==============================CLEAR SECTION=================================
+//==============================CLEAR SECTION==================================
 //=============================================================================
 
 let clearButton = document.getElementById('clear-button');
@@ -81,4 +83,57 @@ let clearButton = document.getElementById('clear-button');
 clearButton.onclick = () => {
     let pixels = document.querySelectorAll('.pixel')
     pixels.forEach(pixel => pixel.style.background = '#e6e6e6')
+}
+
+//=============================================================================
+//==============================RAINBOW SECTION================================
+//=============================================================================
+
+let rainbowButton = document.getElementById('rainbow-button');
+let rainbowButtonIsActive = false
+
+rainbowButton.addEventListener('mousedown', activateRainbow);
+
+function activateRainbow() {
+    if (!rainbowButtonIsActive && !eraserButtonIsActive) {
+        rainbowButtonIsActive = true;
+        rainbowButton.classList.add('selected');
+        
+        let pixels = document.querySelectorAll('.pixel')
+
+        pixels.forEach(pixel => pixel.removeEventListener('mousedown', paintPixelOnClick));
+        pixels.forEach(pixel => pixel.removeEventListener('mouseover', paintPixel));
+
+        pixels.forEach(pixel => pixel.addEventListener('mouseover', rainbow));
+        pixels.forEach(pixel => pixel.addEventListener('mousedown', rainbowOnClick));
+
+    } else if (rainbowButtonIsActive) {
+        rainbowButtonIsActive = false;
+        rainbowButton.classList.remove('selected');
+
+        let pixels = document.querySelectorAll('.pixel');
+        
+        pixels.forEach(pixel => pixel.removeEventListener('mouseover', rainbow));
+        pixels.forEach(pixel => pixel.removeEventListener('mousedown', rainbowOnClick));
+
+        pixels.forEach(pixel => pixel.addEventListener('mousedown', paintPixelOnClick));
+        pixels.forEach(pixel => pixel.addEventListener('mouseover', paintPixel));
+
+    }
+}
+
+function rainbow(e) {
+    if (e.type = 'mouseover' && mouseDown) {
+        let random1 = Math.floor((Math.random() * 255) + 1);
+        let random2 = Math.floor((Math.random() * 255) + 1);
+        let random3 = Math.floor((Math.random() * 255) + 1);
+        this.style.background = `rgb(${random1}, ${random2}, ${random3})`;
+    }
+}
+
+function rainbowOnClick() {
+    let random1 = Math.floor((Math.random() * 255) + 1);
+    let random2 = Math.floor((Math.random() * 255) + 1);
+    let random3 = Math.floor((Math.random() * 255) + 1);
+    this.style.background = `rgb(${random1}, ${random2}, ${random3})`;
 }

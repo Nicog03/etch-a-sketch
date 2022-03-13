@@ -65,7 +65,8 @@ body {
 /* ============================BUTTONS SECTION======================== */
 
 #eraser-button,
-#clear-button {
+#clear-button,
+#rainbow-button {
   height: 30px;
   font-size: 20px;
   text-align: center;
@@ -76,7 +77,8 @@ body {
 }
 
 #eraser-button:hover,
-#clear-button:hover {
+#clear-button:hover,
+#rainbow-button:hover {
   cursor: pointer;
 }
 
