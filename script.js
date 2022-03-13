@@ -71,3 +71,14 @@ function erase(e) {
         this.style.background = '#e6e6e6';
     }
 }
+
+//=============================================================================
+//==============================CLEAR SECTION=================================
+//=============================================================================
+
+let clearButton = document.getElementById('clear-button');
+
+clearButton.onclick = () => {
+    let pixels = document.querySelectorAll('.pixel')
+    pixels.forEach(pixel => pixel.style.background = '#e6e6e6')
+}

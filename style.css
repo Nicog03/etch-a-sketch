@@ -39,7 +39,7 @@ body {
   gap: 15px;
 }
 
-/* ============================ERASER SECTION======================== */
+/* ============================COLOR SELECT SECTION======================== */
 
 #color-select {
   -webkit-appearance: none;
@@ -61,9 +61,11 @@ body {
 #color-select::-moz-color-swatch {
   border: none;
 }
-/* ============================ERASER SECTION======================== */
 
-#eraser-button {
+/* ============================BUTTONS SECTION======================== */
+
+#eraser-button,
+#clear-button {
   height: 30px;
   font-size: 20px;
   text-align: center;
@@ -73,11 +75,13 @@ body {
   transition: ease-out 0.3s;
 }
 
-#eraser-button:hover {
+#eraser-button:hover,
+#clear-button:hover {
   cursor: pointer;
 }
 
-.selected {
+.selected,
+#clear-button:active {
   background-color: black;
   color: white;
   box-shadow: none !important;
