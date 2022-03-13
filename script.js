@@ -48,7 +48,6 @@ eraserButton.addEventListener('click', activateEraser)
 
 function activateEraser() {
     if (!eraserButtonIsActive) {
-        rainbowButtonIsActive = false;
         if (colorPickerIsActive) {
             colorPickerIsActive = false;
             colorPickerButton.classList.remove('selected');
@@ -91,7 +90,23 @@ let rainbowButtonIsActive = false
 rainbowButton.addEventListener('mousedown', activateRainbow);
 
 function activateRainbow() {
-    if (!rainbowButtonIsActive && !eraserButtonIsActive) {
+    if (!rainbowButtonIsActive) {
+        if (eraserButtonIsActive) {
+            eraserButtonIsActive = false;
+
+            eraserButton.classList.remove('selected');
+
+            let pixels = document.querySelectorAll('.pixel')
+            pixels.forEach(pixel => pixel.removeEventListener('mousedown', eraseOnClick));
+            pixels.forEach(pixel => pixel.removeEventListener('mouseover', erase));
+        }
+        if (colorPickerIsActive) {
+            colorPickerIsActive = false;
+            colorPickerButton.classList.remove('selected');
+
+            let pixels = document.querySelectorAll('.pixel');
+            pixels.forEach(pixel => pixel.removeEventListener('mousedown', colorPicker))
+        }
         rainbowButtonIsActive = true;
         rainbowButton.classList.add('selected');
         
@@ -184,7 +199,8 @@ function activateColorPicker() {
 
 function colorPicker() {
     color = this.style.background;
-    colorPickerButton.classList.remove('selected')
+    colorPickerIsActive = false;
+    colorPickerButton.classList.remove('selected');
 
     let pixels = document.querySelectorAll('.pixel');
 
