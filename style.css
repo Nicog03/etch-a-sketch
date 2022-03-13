@@ -66,7 +66,8 @@ body {
 
 #eraser-button,
 #clear-button,
-#rainbow-button {
+#rainbow-button,
+#color-picker-button {
   height: 30px;
   font-size: 20px;
   text-align: center;
@@ -78,7 +79,8 @@ body {
 
 #eraser-button:hover,
 #clear-button:hover,
-#rainbow-button:hover {
+#rainbow-button:hover,
+#color-picker-button:hover {
   cursor: pointer;
 }
 

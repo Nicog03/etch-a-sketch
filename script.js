@@ -48,7 +48,13 @@ eraserButton.addEventListener('click', activateEraser)
 function activateEraser() {
     if (!eraserButtonIsActive) {
         rainbowButtonIsActive = false;
+        if (colorPickerIsActive) {
+            colorPickerIsActive = false;
+            colorPickerButton.classList.remove('selected');
 
+            let pixels = document.querySelectorAll('.pixel');
+            pixels.forEach(pixel => pixel.removeEventListener('mousedown', colorPicker))
+        }
         eraserButtonIsActive = true;
         eraserButton.classList.add('selected');
 
@@ -72,17 +78,6 @@ function erase(e) {
     if (e.type == 'mouseover' && mouseDown) {
         this.style.background = '#e6e6e6';
     }
-}
-
-//=============================================================================
-//==============================CLEAR SECTION==================================
-//=============================================================================
-
-let clearButton = document.getElementById('clear-button');
-
-clearButton.onclick = () => {
-    let pixels = document.querySelectorAll('.pixel')
-    pixels.forEach(pixel => pixel.style.background = '#e6e6e6')
 }
 
 //=============================================================================
@@ -137,3 +132,82 @@ function rainbowOnClick() {
     let random3 = Math.floor((Math.random() * 255) + 1);
     this.style.background = `rgb(${random1}, ${random2}, ${random3})`;
 }
+
+//=============================================================================
+//=========================COLOR PICKER SECTION================================
+//=============================================================================
+
+let colorPickerButton = document.getElementById('color-picker-button');
+let colorPickerIsActive = false;
+
+colorPickerButton.addEventListener('click', activateColorPicker)
+
+function activateColorPicker() {
+    if (!colorPickerIsActive) {
+        if (eraserButtonIsActive) {
+            eraserButtonIsActive = false
+            
+            eraserButton.classList.remove('selected');
+
+            let pixels = document.querySelectorAll('.pixel');
+            pixels.forEach(pixel => pixel.removeEventListener('mousedown', eraseOnClick));
+            pixels.forEach(pixel => pixel.removeEventListener('mouseover', erase));
+        }
+        colorPickerIsActive = true;
+        colorPickerButton.classList.add('selected');
+
+        let pixels = document.querySelectorAll('.pixel');
+
+        pixels.forEach(pixel => pixel.removeEventListener('mousedown', paintPixelOnClick));
+        pixels.forEach(pixel => pixel.removeEventListener('mouseover', paintPixel));
+
+        pixels.forEach(pixel => pixel.removeEventListener('mouseover', rainbow));
+        pixels.forEach(pixel => pixel.removeEventListener('mousedown', rainbowOnClick));
+
+        pixels.forEach(pixel => pixel.addEventListener('mousedown', colorPicker))
+    } else if (colorPickerIsActive) {
+        if (rainbowButtonIsActive) {
+            let pixels = document.querySelectorAll('.pixel');
+            pixels.forEach(pixel => pixel.addEventListener('mouseover', rainbow));
+            pixels.forEach(pixel => pixel.addEventListener('mousedown', rainbowOnClick));
+        }
+        colorPickerIsActive = false;
+        colorPickerButton.classList.remove('selected')
+
+        let pixels = document.querySelectorAll('.pixel');
+        pixels.forEach(pixel => pixel.removeEventListener('mousedown', colorPicker))
+    }
+}
+
+function colorPicker() {
+    color = this.style.background;
+    colorPickerButton.classList.remove('selected')
+
+    let pixels = document.querySelectorAll('.pixel');
+
+    pixels.forEach(pixel => pixel.addEventListener('mousedown', paintPixelOnClick));
+    pixels.forEach(pixel => pixel.addEventListener('mouseover', paintPixel));
+
+    pixels.forEach(pixel => pixel.removeEventListener('mousedown', colorPicker))
+
+    if (rainbowButtonIsActive) {
+        rainbowButtonIsActive = false;
+        rainbowButton.classList.remove('selected');
+
+        let pixels = document.querySelectorAll('.pixel');
+        pixels.forEach(pixel => pixel.removeEventListener('mouseover', rainbow));
+        pixels.forEach(pixel => pixel.removeEventListener('mousedown', rainbowOnClick));
+    }
+}
+
+//=============================================================================
+//==============================CLEAR SECTION==================================
+//=============================================================================
+
+let clearButton = document.getElementById('clear-button');
+
+clearButton.onclick = () => {
+    let pixels = document.querySelectorAll('.pixel')
+    pixels.forEach(pixel => pixel.style.background = '#e6e6e6')
+}
+
