@@ -1,13 +1,13 @@
 const grid = document.getElementById('grid');
 
-let size = 16; //it's the height and width of the grid;
+let defaultSize = 16; //it's the height and width of the grid;
 
 let mouseDown = false;
 window.onmousedown = () => mouseDown = true;
 window.onmouseup = () => mouseDown = false;
 
 // create grid:
-for (let a = 0; a < size * size; a++) {
+for (let a = 0; a < defaultSize * defaultSize; a++) {
     let pixel = document.createElement('div');
     pixel.classList.add('pixel');
     pixel.style.background = '#e6e6e6'
@@ -253,3 +253,38 @@ clearButton.onclick = () => {
     pixels.forEach(pixel => pixel.style.background = '#e6e6e6')
 }
 
+//=============================================================================
+//==============================GRID SIZE SECTION==============================
+//=============================================================================
+
+let gridSizeSlider = document.getElementById('grid-size-slider');
+let sizePara = document.getElementById('size-para');
+
+gridSizeSlider.onmousemove = () => {
+    sizePara.innerHTML = `Grid size: ${gridSizeSlider.value} x ${gridSizeSlider.value}`
+}
+
+gridSizeSlider.onchange = e => changeGrid(gridSizeSlider.value);
+
+function changeGrid(size) {
+    //removes all pixels from the grid:
+    let pixels = document.querySelectorAll('.pixel');
+    pixels.forEach(pixel => pixel.remove());
+
+    grid.style.gridTemplateColumns = ``
+    grid.style.gridTemplateRows = ``
+
+    grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+    grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
+
+    for (let a = 0; a < size * size; a++) {
+        let pixel = document.createElement('div');
+        pixel.classList.add('pixel');
+        pixel.style.background = '#e6e6e6'
+        pixel.setAttribute('draggable', false);
+        pixel.addEventListener('mousedown', paintPixelOnClick);
+        pixel.addEventListener('mouseover', paintPixel);
+        grid.appendChild(pixel);
+    }
+
+}
