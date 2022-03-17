@@ -25,9 +25,6 @@ body {
   margin-left: 15px;
 }
 
-.pixel {
-}
-
 #grid {
   height: 500px;
   width: 500px;
@@ -94,4 +91,17 @@ body {
   background-color: black;
   color: white;
   box-shadow: none !important;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  background-color: black;
+  height: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: red;
+  height: 15px;
+  width: 10px;
 }
