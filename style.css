@@ -93,15 +93,18 @@ body {
   box-shadow: none !important;
 }
 
+/* ============================RANGE INPUT SECTION======================== */
+
 input[type="range"] {
   -webkit-appearance: none;
   background-color: black;
-  height: 10px;
+  border: black solid 2px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background-color: red;
-  height: 15px;
-  width: 10px;
+  background-color: black;
+  height: 10px;
+  width: 7px;
+  margin: -5px;
 }
