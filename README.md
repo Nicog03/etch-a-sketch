@@ -15,4 +15,4 @@ This project was created, above everything else, with the intent of practicing t
 ## How to use it?
 
 Well, it's pretty simple really:
-The published trough the usage of GitHub pages, so all that you need to do is click [here!](https://nicog03.github.io/etch-a-sketch/)
+The published trough the usage of GitHub pages, so all that you need to do is click <a href="https://nicog03.github.io/etch-a-sketch/" target="_blank0">here!</a>
