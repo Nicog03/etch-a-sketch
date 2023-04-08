@@ -11,3 +11,8 @@ This web application provides a drawing environment, where the user is able to c
 ### Why was it made?
 
 This project was created, above everything else, with the intent of practicing the **CSS grid layout** and mainly the **DOM manipulation** capabilities of JavaScript.
+
+## How to use it?
+
+Well, it's pretty simple really:
+The published trough the usage of GitHub pages, so all that you need to do is click [here!](https://nicog03.github.io/etch-a-sketch/)
