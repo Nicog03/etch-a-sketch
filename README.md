@@ -1,3 +1,3 @@
 # etch-a-sketch
 
-<img src="./readme-content/example.gif" alt="Example GIF" width="200">
+<img src="./readme-content/example.gif" alt="Example GIF" width="500">
